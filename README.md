@@ -53,3 +53,5 @@ MIT. Karena berbagi itu indah (kecuali skor tertinggi).
 
 Selamat booking, semoga ping-mu selalu hijau! 
 Salam dari saya Availlll
+
+# Project ini masih belum 100% jadi,kalau ga malas aku lanjutin lagi
