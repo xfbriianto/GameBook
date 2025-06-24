@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  role      String   // 'admin' atau 'user'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+}
+
+model Station {
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        String
+  price       Float
+  status      String
+  image       String?
+  description String?
+  specs       Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  bookings    Booking[]
+}
+
+model Booking {
+  id          Int       @id @default(autoincrement())
+  stationId   Int
+  userId      Int
+  date        DateTime
+  time        String
+  duration    Int
+  totalPrice  Float
+  status      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime @updatedAt
+  station     Station   @relation(fields: [stationId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id])
+}
